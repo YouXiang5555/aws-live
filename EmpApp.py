@@ -1,36 +1,3 @@
-Skip to content
-Search or jump to…
-Pulls
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@YouXiang5555 
-YouXiang5555
-/
-aws-live
-Public
-forked from lowchoonkeat/aws-live
-Cannot fork because you own this repository and are not a member of any organizations.
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Beta Try the new code view
-aws-live/EmpApp.py /
-@YouXiang5555
-YouXiang5555 Update EmpApp.py
-Latest commit 3bb2c66 11 minutes ago
- History
- 2 contributors
-@YouXiang5555@lowchoonkeat
-193 lines (153 sloc)  6.49 KB
- 
 
 from flask import Flask, render_template, request
 from pymysql import connections
