@@ -122,7 +122,7 @@ def GetEmp():
 @app.route("/deleteemp", methods=['GET', 'POST'])
 def DeleteEmp():
     if request.method == 'POST':
-        emp_id = request.form['delete-employee-id']
+        emp_id = request.form['delete_employee_id']
 
         # Delete employee record from the database
         delete_sql = "DELETE FROM employee WHERE emp_id = %s"
