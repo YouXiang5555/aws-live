@@ -13,8 +13,13 @@ Template 2102 Constructive
 http://www.tooplate.com/view/2102-constructive
 
 -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+<link rel="stylesheet" href="../OtherFile/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../OtherFile/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../OtherFile/css/magnific-popup.css"/>
+<link rel="stylesheet" type="text/css" href="../OtherFile/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../OtherFile/slick/slick-theme.css"/>
+<link rel="stylesheet" href="../OtherFile/css/tooplate-style.css">
 
     <script>
         var renderPage = true;
@@ -286,10 +291,10 @@ http://www.tooplate.com/view/2102-constructive
         <div id="preload-03"></div>
         <div id="preload-04"></div>
 
-        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-        <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
-        <script type="text/javascript" src="slick/slick.min.js"></script> <!-- Slick Carousel -->
+        <script type="text/javascript" src="../OtherFile/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="../OtherFile/js/jquery.magnific-popup.min.js"></script>
+        <script type="text/javascript" src="../OtherFile/js/jquery.backstretch.min.js"></script>
+        <script type="text/javascript" src="../OtherFile/slick/slick.min.js"></script> <!-- Slick Carousel -->
         
         <script>
 
@@ -377,7 +382,7 @@ http://www.tooplate.com/view/2102-constructive
 
             // Change background image
             var bgImg = currentNavItem.data("bgImg");
-            $.backstretch("img/" + bgImg);              
+            $.backstretch("../OtherFile/img/" + bgImg);              
         }
 
         // Setup Nav Toggle Button
@@ -443,7 +448,7 @@ http://www.tooplate.com/view/2102-constructive
                 // Set up background first page
                 var bgImg = $("#tmNavLink1").data("bgImg");
                 
-                $.backstretch("img/" + bgImg, {fade: 500});
+                $.backstretch("../OtherFile/img/" + bgImg, {fade: 500});
 
                 // Setup Carousel, Nav, and Nav Toggle
                 setupCarousel();
