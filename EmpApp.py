@@ -33,8 +33,8 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    emp_id = request.form['employee-id']
-    employee_name = request.form['employee-name']
+    emp_id = request.form['employee_id']
+    employee_name = request.form['employee_name']
     contact = request.form['contact']
     email = request.form['email']
     position = request.form['position']
@@ -53,7 +53,7 @@ def AddEmp():
         cursor.execute(insert_sql, (emp_id, employee_name, contact, email, position,payscale,hiredDate))
         db_conn.commit()
         # Uplaod image file in S3 #
-        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+        emp_image_file_name_in_s3 = "emp_id_" + str(emp_id) + "_image_file"
         s3 = boto3.resource('s3')
 
         try:
@@ -85,7 +85,7 @@ def AddEmp():
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
     if request.method == 'POST':
-        emp_id = request.form['query-employee-id']
+        emp_id = request.form['query_employee_id']
 
         # Fetch employee data from the database
         select_sql = "SELECT * FROM employee WHERE emp_id = %s"
@@ -135,7 +135,7 @@ def DeleteEmp():
 
         # Delete employee image from S3
         if deleted_rows > 0:
-            emp_image_file_name_in_s3 = "emp-id-{0}_image_file".format(emp_id)
+            emp_image_file_name_in_s3 = "emp_id_{0}_image_file".format(emp_id)
             s3 = boto3.client('s3')
 
             try:
@@ -152,9 +152,9 @@ def DeleteEmp():
 @app.route("/updateemp", methods=['GET', 'POST'])
 def UpdateEmp():
     if request.method == 'POST':
-        emp_id = request.form['update-employee-id']
-        employee_name = request.form['update-employee-name']
-        contact = request.form['update-payroll']
+        emp_id = request.form['update_employee_id']
+        employee_name = request.form['update_employee_name']
+        contact = request.form['update_payroll']
         email = request.form['email']
         position = request.form['position']
         payscale = request.form['payscale']
@@ -172,7 +172,7 @@ def UpdateEmp():
 
         if updated_rows > 0:
             # Update employee image in S3
-            emp_image_file_name_in_s3 = "emp-id-{0}_image_file".format(emp_id)
+            emp_image_file_name_in_s3 = "emp_id_{0}_image_file".format(emp_id)
             s3 = boto3.client('s3')
 
             try:
