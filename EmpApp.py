@@ -156,9 +156,9 @@ def UpdateEmp():
         employee_name = request.form['update_employee_name']
         contact = request.form['update_contact']
         email = request.form['update_email']
-        position = request.form['update-position']
-        payscale = request.form['update-payscale']
-        hiredDate = request.form['update-hiredDate']
+        position = request.form['update_position']
+        payscale = request.form['update_payscale']
+        hiredDate = request.form['update_hiredDate']
         emp_image_file = request.files['emp_image_file']
 
         # Update employee record in the database
