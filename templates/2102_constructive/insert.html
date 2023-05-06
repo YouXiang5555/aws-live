@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Employee</title>
+    <!-- Add your CSS and JavaScript imports here -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" href="css/tooplate-style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="query.html">Query</a></li>
+                <li><a href="insert.html">Insert Employee</a></li>
+                <li><a href="update.html">Update Employee</a></li>
+                <li><a href="delete.html">Delete Employee</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="tm-section-3" class="tm-section">
+            <!-- Insert Employee page content -->
+            <h2>Insert Employee</h2>
+            <form id="insert-form">
+                <label for="employee-id">Employee ID:</label>
+                <input type="text" id="employee-id" name="employee-id" required>
+                <br>
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name" required>
+                <br>
+                <label for="payroll">Payroll:</label>
+                <input type="number" id="payroll" name="payroll" required>
+                <br>
+                <label for="attendance">Attendance:</label>
+                <select id="attendance" name="attendance">
+                    <option value="absent">Absent</option>
+                    <option value="present">Present</option>
+                </select>
+                <br>
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" name="contact" required>
+                <br>
+                <button type="submit">Insert Employee</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+</body>
+<style>
+    /* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic typography */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: #f1f1f1;
+  padding: 20px 0;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 30px;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 10px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  color: #666;
+}
+
+/* Main Content */
+main {
+  padding: 40px 0;
+}
+
+main h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+main p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+</style>
+</html>
