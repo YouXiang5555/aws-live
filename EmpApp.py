@@ -43,11 +43,11 @@ def AddEmp():
     hiredDate = request.form['hiredDate']
     emp_image_file = request.files['image']
 
-   # Uplaod image file in S3 #
-   emp_image_file_name_in_s3 = "emp_id_" + str(emp_id) + "_image_file"
-   s3 = boto3.resource('s3')
+    # Uplaod image file in S3 #
+    emp_image_file_name_in_s3 = "emp_id_" + str(emp_id) + "_image_file"
+    s3 = boto3.resource('s3')
 
-   if emp_image_file.filename == "":
+    if emp_image_file.filename == "":
         return "Please select a file"
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
@@ -68,20 +68,17 @@ def AddEmp():
         except Exception as e:
             return str(e)
 
-insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-cursor = db_conn.cursor()
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    cursor = db_conn.cursor()
 
     try:
-
         cursor.execute(insert_sql, (emp_id, employee_name, contact, email, position, payscale, hiredDate, object_url))
         db_conn.commit()
-     
-
     finally:
         cursor.close()
 
-    print("all modification done...")
-    return render_template('AddEmpOutput.html', name=employee_name)
+print("all modification done...")
+return render_template('AddEmpOutput.html', name=employee_name)
 
 #get employee
 @app.route("/getemp", methods=['GET', 'POST'])
