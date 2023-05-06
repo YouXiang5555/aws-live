@@ -389,7 +389,7 @@ http://www.tooplate.com/view/2102-constructive
 
             // Change background image
             var bgImg = currentNavItem.data("bgImg");
-            $.backstretch("img/" + bgImg);              
+            $.backstretch("{{ url_for('OtherFile', filename='img/" + bgImg + "')}}");    	
         }
 
         // Setup Nav Toggle Button
@@ -455,7 +455,7 @@ http://www.tooplate.com/view/2102-constructive
                 // Set up background first page
                 var bgImg = $("#tmNavLink1").data("bgImg");
                 
-                $.backstretch("img/" + bgImg, {fade: 500});
+                $.backstretch("{{ url_for('OtherFile', filename='img/" + bgImg + "')}}", {fade: 500});
 
                 // Setup Carousel, Nav, and Nav Toggle
                 setupCarousel();
