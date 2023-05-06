@@ -160,7 +160,7 @@ def UpdateEmp():
         position = request.form['update_position']
         payscale = request.form['update_payscale']
         hiredDate = request.form['update_hiredDate']
-        emp_image_file = request.files['emp_image_file']
+        emp_image_file = request.files['update_image']
 
         # Update employee record in the database
         update_sql = """UPDATE employee SET employee_name = %s, contact = %s,
