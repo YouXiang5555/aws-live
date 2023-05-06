@@ -1,3 +1,37 @@
+Skip to content
+Search or jump to…
+Pulls
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@YouXiang5555 
+YouXiang5555
+/
+aws-live
+Public
+forked from lowchoonkeat/aws-live
+Cannot fork because you own this repository and are not a member of any organizations.
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Beta Try the new code view
+aws-live/EmpApp.py /
+@YouXiang5555
+YouXiang5555 Update EmpApp.py
+Latest commit 3bb2c66 11 minutes ago
+ History
+ 2 contributors
+@YouXiang5555@lowchoonkeat
+193 lines (153 sloc)  6.49 KB
+ 
+
 from flask import Flask, render_template, request
 from pymysql import connections
 import os
@@ -79,7 +113,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', name=employee_name)
 
 #get employee
 @app.route("/getemp", methods=['GET', 'POST'])
@@ -95,7 +129,7 @@ def GetEmp():
         cursor.close()
 
         if employee:
-            emp_id, employee_name, contact, email, position,payscale,hiredDate = employee
+            emp_id, employee_name, contact, email, position,payscale,hiredDate, img_src = employee
             emp_image_file_name_in_s3 = "emp_id_{0}_image_file".format(emp_id)
 
             # Download image URL from S3
@@ -153,17 +187,18 @@ def UpdateEmp():
     if request.method == 'POST':
         emp_id = request.form['update_employee_id']
         employee_name = request.form['update_employee_name']
-        contact = request.form['update_payroll']
-        email = request.form['email']
-        position = request.form['position']
-        payscale = request.form['payscale']
+        contact = request.form['update_contact']
+        email = request.form['update_email']
+        position = request.form['update-position']
+        payscale = request.form['update-payscale']
+        hiredDate = request.form['update-hiredDate']
         emp_image_file = request.files['emp_image_file']
 
         # Update employee record in the database
         update_sql = """UPDATE employee SET employee_name = %s, contact = %s,
-                        email = %s, position = %s,payscale = %s WHERE emp_id = %s"""
+                        email = %s, position = %s,payscale = %s,hiredDate = %s WHERE emp_id = %s"""
         cursor = db_conn.cursor()
-        cursor.execute(update_sql, (employee_name, contact, email, position, payscale,emp_id))
+        cursor.execute(update_sql, (employee_name, contact, email, position, payscale,hiredDate,emp_id))
         db_conn.commit()
 
         updated_rows = cursor.rowcount
@@ -190,4 +225,3 @@ def UpdateEmp():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
-
