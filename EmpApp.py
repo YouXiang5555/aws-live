@@ -88,16 +88,15 @@ def GetEmp():
         emp_id = request.form['query_employee_id']
 
         # Fetch employee data from the database
-        select_sql = "SELECT * FROM employee WHERE emp_id = %s"
+        select_sql = "SELECT * FROM employee WHERE employee_id = %s"
         cursor = db_conn.cursor()
-        cursor.execute(select_sql, (emp_id,))
+        cursor.execute(select_sql, (emp_id))
         employee = cursor.fetchone()
         cursor.close()
 
         if employee:
-            emp_id, first_name, last_name, pri_skill, location = employee
-            emp_name = f"{first_name} {last_name}"
-            emp_image_file_name_in_s3 = "emp-id-{0}_image_file".format(emp_id)
+            emp_id, employee_name, contact, email, position,payscale,hiredDate = employee
+            emp_image_file_name_in_s3 = "emp_id_{0}_image_file".format(emp_id)
 
             # Download image URL from S3
             s3 = boto3.client('s3')
@@ -112,7 +111,7 @@ def GetEmp():
                 custombucket,
                 emp_image_file_name_in_s3)
 
-            return render_template('GetEmpOutput.html', name=emp_name, pri_skill=pri_skill, location=location, image_url=object_url)
+            return render_template('GetEmpOutput.html', name=employee_name, contact=contact, email = email, position = position, payscale=payscale, hiredDate=hiredDate, image_url = object_url)
         else:
             return "Employee not found"
 
@@ -125,7 +124,7 @@ def DeleteEmp():
         emp_id = request.form['delete_employee_id']
 
         # Delete employee record from the database
-        delete_sql = "DELETE FROM employee WHERE emp_id = %s"
+        delete_sql = "DELETE FROM employee WHERE employee_id = %s"
         cursor = db_conn.cursor()
         cursor.execute(delete_sql, (emp_id,))
         db_conn.commit()
@@ -161,15 +160,15 @@ def UpdateEmp():
         emp_image_file = request.files['emp_image_file']
 
         # Update employee record in the database
-        update_sql = """UPDATE employee SET first_name = %s, last_name = %s,
-                        pri_skill = %s, location = %s WHERE emp_id = %s"""
+        update_sql = """UPDATE employee SET employee_name = %s, contact = %s,
+                        email = %s, position = %s,payscale = %s WHERE emp_id = %s"""
         cursor = db_conn.cursor()
-        cursor.execute(update_sql, (first_name, last_name, pri_skill, location, emp_id))
+        cursor.execute(update_sql, (employee_name, contact, email, position, payscale,emp_id))
         db_conn.commit()
 
         updated_rows = cursor.rowcount
         cursor.close()
-
+        
         if updated_rows > 0:
             # Update employee image in S3
             emp_image_file_name_in_s3 = "emp_id_{0}_image_file".format(emp_id)
