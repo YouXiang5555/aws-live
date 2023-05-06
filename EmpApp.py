@@ -38,7 +38,7 @@ def AddEmp():
     contact = request.form['contact']
     email = request.form['email']
     position = request.form['position']
-    payscale = request.form['[payscale']
+    payscale = request.form['payscale']
     hiredDate = request.form['hiredDate']
     emp_image_file = request.files['image']
 
