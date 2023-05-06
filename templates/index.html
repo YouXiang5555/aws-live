@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Constructive HTML Template</title>
+<!--
+
+Template 2102 Constructive
+
+http://www.tooplate.com/view/2102-constructive
+
+-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+
+
+    <script>
+        var renderPage = true;
+
+    if(navigator.userAgent.indexOf('MSIE')!==-1
+        || navigator.appVersion.indexOf('Trident/') > 0){
+        /* Microsoft Internet Explorer detected in. */
+        alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+        renderPage = false;
+    }
+    </script>
+    <script>
+        const dummyData = [
+            {employeeId: 1, employeeName: 'John', payroll: 5000, attendance: 'attend'},
+            {employeeId: 2, employeeName: 'Jane', payroll: 4000, attendance: 'absent'},
+            {employeeId: 3, employeeName: 'Doe', payroll: 6000, attendance: 'attend'},
+        ];
+
+        function filterRecords() {
+            const selectedAttr = $("#attribute-select").val();
+            const operator = $("#operator-select").val();
+            const value = parseFloat($("#value-input").val());
+            const attendance = $("#attendance-select").val();
+
+            if (selectedAttr === "payroll") {
+                return dummyData.filter(record => {
+                    if (operator === "more_than") {
+                        return record.payroll > value;
+                    } else if (operator === "less_than") {
+                        return record.payroll < value;
+                    } else if (operator === "equal_to") {
+                        return record.payroll === value;
+                    }
+                });
+            } else if (selectedAttr === "attendance") {
+                return dummyData.filter(record => record.attendance === attendance);
+            }
+
+            return [];
+        }
+
+        function displayRecords(records) {
+            const tableBody = $("#records-table tbody");
+            tableBody.empty();
+
+            records.forEach(record => {
+                const row = $("<tr></tr>");
+                row.append($("<td></td>").text(record.employeeId));
+                row.append($("<td></td>").text(record.employeeName));
+                row.append($("<td></td>").text(record.payroll));
+                row.append($("<td></td>").text(record.attendance));
+                tableBody.append(row);
+            });
+        }
+
+        $(document).ready(function () {
+            $("#fetch-records-btn").click(function () {
+                $("#attribute-select").show(); // Show the attribute-select dropdown when the button is clicked
+            });
+
+            $("#attribute-select").change(function () {
+                const selectedAttr = $(this).val();
+                $("#operator-select, #value-input, #attendance-select").hide();
+                if (selectedAttr === "payroll") {
+                    $("#operator-select, #value-input").show();
+                } else if (selectedAttr === "attendance") {
+                    $("#attendance-select").show();
+                }
+            });
+
+            $("#fetch-records-btn").click(function () {
+                const filteredRecords = filterRecords();
+                displayRecords(filteredRecords);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    
+    <!-- Page Content -->
+    <div class="container-fluid tm-main">
+        <div class="row tm-main-row">
+
+            <!-- Sidebar -->
+            <div id="tmSideBar" class="col-xl-3 col-lg-4 col-md-12 col-sm-12 sidebar">
+
+                <button id="tmMainNavToggle" class="menu-icon">&#9776;</button>
+
+                <div class="inner">
+                    <nav id="tmMainNav" class="tm-main-nav">
+                        <ul>
+                            <li>
+                                <a href="#insert" id="tmNavLink1" class="scrolly active" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-1">
+                                    <i class="fas fa-home tm-nav-fa-icon"></i>
+                                    <span>Insert Employee</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#query" id="tmNavLink2" class="scrolly" data-bg-img="constructive_bg_02.jpg" data-page="#tm-section-2" data-page-type="carousel">
+                                    <i class="fas fa-map tm-nav-fa-icon"></i>
+                                    <span>Query Employee</span>
+                                </a>
+                            </li>                           
+                            <li>
+                                <a href="#update" class="scrolly" data-bg-img="constructive_bg_03.jpg" data-page="#tm-section-3">
+                                    <i class="fas fa-users tm-nav-fa-icon"></i>
+                                    <span>Update Employee</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#delete" class="scrolly" data-bg-img="constructive_bg_04.jpg" data-page="#tm-section-4">
+                                    <i class="fas fa-comments tm-nav-fa-icon"></i>
+                                    <span>Delete Emplpyee</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="payslip" class="scrolly" data-bg-img="constructive_bg_01.jpg" data-page="#tm-section-5">
+                                    <i class="fas fa-home tm-nav-fa-icon"></i>
+                                    <span>Print Payslip</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#attendence" class="scrolly" data-bg-img="constructive_bg_02.jpg" data-page="#tm-section-6">
+                                    <i class="fas fa-home tm-nav-fa-icon"></i>
+                                    <span>Attendance</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 tm-content">
+
+                    <!-- section 1 -->
+                    <section id="tm-section-1" class="tm-section">
+                        <div class="ml-auto">
+                          <header class="mb-4"><h1 class="tm-text-shadow">Insert New Employee</h1></header>
+                          <p class="mb-5 tm-font-big">Aenean fermentum vestibulum ipsum, ut pretium erat sodales sodales. Pellentesque quis orci vitae dui commodo sodales et ut quam. Etiam vitae egestas purus, ut malesuada enim.</p>
+                          <form id="insert-form">
+                            <div class="left-column">
+                              <label for="employee-id">Employee ID:</label>
+                              <input type="text" id="employee-id" name="employee-id" required>
+                              <br>
+                              <label for="employee-name">Employee Name:</label>
+                              <input type="text" id="employee-name" name="employee-name" required>
+                              <br>
+                              <label for="contact">Contact:</label>
+                              <input type="text" id="contact" name="contact" required>
+                              <br>
+                              <label for="email">Email:</label>
+                              <input type="text" name="email" id="email" required>
+                            </div>
+                            <div class="right-column">
+                                <label for="position">Position:</label>
+                                <input type="text" id="position" name="position" required>
+                                <br>
+                                <label for="payscale">Payscale:</label>
+                                <input type="number" name="payacale" id="payscale">
+                                <br>
+                                <label for="hiredDate">Hired Date</label>
+                                <input type="date" id="hiredDate" name="hiredDate" required>
+                                <br>
+                                <label for="image">Image:</label>
+                                <input type="file" name="image" id="image" accept="image/*">
+ 
+                            </div>
+                            <div>
+                                <button type="submit">Insert Employee</button>      
+                            </div>
+                            
+                          </form>
+                          <!--data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item -->
+                        </div> 
+                      </section>
+                      
+
+                    <!-- section 2 -->
+                    <section id="tm-section-2" class="tm-section tm-section-carousel">
+                        <h1>Employee Management System</h1>
+                        <button id="fetch-records-btn">Get Records</button>
+                        <select id="attribute-select" style="display:none;">
+                            <option value="">Select an attribute</option>
+                            <option value="payroll">Payroll</option>
+                            <option value="attendance">Attendance</option>
+                        </select>
+                        <select id="operator-select" style="display:none;">
+                            <option value="">Select an operator</option>
+                            <option value="more_than">More than</option>
+                            <option value="less_than">Less than</option>
+                            <option value="equal_to">Equal to</option>
+                        </select>
+                        <input type="number" id="value-input" style="display:none;">
+                        <select id="attendance-select" style="display:none;">
+                            <option value="">Select attendance</option>
+                            <option value="absent">Absent</option>
+                            <option value="attend">Attend</option>
+                        </select>
+                        <!-- Container to display fetched records -->
+                        <table id="records-table" border="1">
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Payroll</th>
+                                    <th>Attendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>                   
+                    </section>  
+
+                    <!-- section 3 -->
+                    <section id="tm-section-3" class="tm-section">
+                        <!-- Update Employee page content -->
+                    <h2>Update Employee</h2>
+                    <p class="mb-5 tm-font-big">Aenean fermentum vestibulum ipsum, ut pretium erat sodales sodales. Pellentesque quis orci vitae dui commodo sodales et ut quam. Etiam vitae egestas purus, ut malesuada enim.</p>
+                        <form id="update-form">
+                            <label for="update-employee-id">Employee ID:</label>
+                            <input type="text" id="update-employee-id" name="update-employee-id" required>
+                            <br>
+                            <label for="update-employee-name">Employee Name:</label>
+                            <input type="text" id="update-employee-name" name="update-employee-name">
+                            <br>
+                            <label for="update-payroll">Payroll:</label>
+                            <input type="number" id="update-payroll" name="update-payroll">
+                            <br>
+                            <label for="update-attendance">Attendance:</label>
+                            <select id="update-attendance" name="update-attendance">
+                                <option value="absent">Absent</option>
+                                <option value="present">Present</option>
+                            </select>
+                            <br>
+                            <label for="update-contact">Contact:</label>
+                            <input type="text" id="update-contact" name="update-contact">
+                            <br>
+                            <button type="submit">Update Employee</button>
+                        </form>
+                    </section>                          
+                    <!-- section 4 -->
+                    <section id="tm-section-4" class="tm-section">
+                        <!-- Delete Employee page content -->
+                        <h2>Delete Employee</h2>
+                        <form id="delete-form">
+                            <label for="delete-employee-id">Employee ID:</label>
+                            <input type="text" id="delete-employee-id" name="delete-employee-id" required>
+                            <br>
+                            <button type="submit">Delete Employee</button>
+                        </form>
+                    </section>                 
+                </div>  <!-- .tm-content -->                            
+                <footer class="footer-link">
+                    <p class="tm-copyright-text">Copyright &copy; 2018 Constructive Co. Ltd. 
+                    
+                    - Design: <a rel="nofollow" href="https://www.tooplate.com">Tooplate</a></p>
+                </footer>
+            </div>  <!-- row -->            
+        </div>
+        <div id="preload-01"></div>
+        <div id="preload-02"></div>
+        <div id="preload-03"></div>
+        <div id="preload-04"></div>
+
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+        <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+        <script type="text/javascript" src="slick/slick.min.js"></script> <!-- Slick Carousel -->
+        
+        <script>
+
+        var sidebarVisible = false;
+        var currentPageID = "#tm-section-1";
+
+        // Setup Carousel
+        function setupCarousel() {
+
+            // If current page isn't Carousel page, don't do anything.
+            if($('#tm-section-2').css('display') == "none") {
+            }
+            else {  // If current page is Carousel page, set up the Carousel.
+
+                var slider = $('.tm-img-slider');
+                var windowWidth = $(window).width();
+
+                if (slider.hasClass('slick-initialized')) {
+                    slider.slick('destroy');
+                }
+
+                if(windowWidth < 640) {
+                    slider.slick({
+                        dots: true,
+                        infinite: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    });
+                }
+                else if(windowWidth < 992) {
+                    slider.slick({
+                        dots: true,
+                        infinite: false,
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    });
+                }
+                else {
+                    // Slick carousel
+                    slider.slick({
+                        dots: true,
+                        infinite: false,
+                        slidesToShow: 3,
+                        slidesToScroll: 2
+                    });
+                }
+
+                // Init Magnific Popup
+                $('.tm-img-slider').magnificPopup({
+                  delegate: 'a', // child items selector, by clicking on it popup will open
+                  type: 'image',
+                  gallery: {enabled:true}
+                  // other options
+                });
+            }
+        }
+
+        // Setup Nav
+        function setupNav() {
+            // Add Event Listener to each Nav item
+            $(".tm-main-nav a").click(function(e){
+                e.preventDefault();
+                
+                var currentNavItem = $(this);
+                changePage(currentNavItem);
+                
+                setupCarousel();
+                setupFooter();
+
+                // Hide the nav on mobile
+                $("#tmSideBar").removeClass("show");
+            });     
+        }
+
+        function changePage(currentNavItem) {
+            // Update Nav items
+            $(".tm-main-nav a").removeClass("active");
+            currentNavItem.addClass("active");
+
+            $(currentPageID).hide();
+
+            // Show current page
+            currentPageID = currentNavItem.data("page");
+            $(currentPageID).fadeIn(1000);
+
+            // Change background image
+            var bgImg = currentNavItem.data("bgImg");
+            $.backstretch("img/" + bgImg);              
+        }
+
+        // Setup Nav Toggle Button
+        function setupNavToggle() {
+
+            $("#tmMainNavToggle").on("click", function(){
+                $(".sidebar").toggleClass("show");
+            });
+        }
+
+        // If there is enough room, stick the footer at the bottom of page content.
+        // If not, place it after the page content
+        function setupFooter() {
+            
+            var padding = 100;
+            var footerPadding = 40;
+            var mainContent = $("section"+currentPageID);
+            var mainContentHeight = mainContent.outerHeight(true);
+            var footer = $(".footer-link");
+            var footerHeight = footer.outerHeight(true);
+            var totalPageHeight = mainContentHeight + footerHeight + footerPadding + padding;
+            var windowHeight = $(window).height();      
+
+            if(totalPageHeight > windowHeight){
+                $(".tm-content").css("margin-bottom", footerHeight + footerPadding + "px");
+                footer.css("bottom", footerHeight + "px");              
+            }
+            else {
+                $(".tm-content").css("margin-bottom", "0");
+                footer.css("bottom", "20px");               
+            }           
+        }
+
+        // Everything is loaded including images.
+        $(window).on("load", function(){
+
+            // Render the page on modern browser only.
+            if(renderPage) {
+                // Remove loader
+                $('body').addClass('loaded');
+
+                // Page transition
+                var allPages = $(".tm-section");
+
+                // Handle click of "Continue", which changes to next page
+                // The link contains data-nav-link attribute, which holds the nav item ID
+                // Nav item ID is then used to access and trigger click on the corresponding nav item
+                var linkToAnotherPage = $("a.tm-btn[data-nav-link]");
+                
+                if(linkToAnotherPage != null) {
+                    
+                    linkToAnotherPage.on("click", function(){
+                        var navItemToHighlight = linkToAnotherPage.data("navLink");
+                        $("a" + navItemToHighlight).click();
+                    });
+                }
+                
+                // Hide all pages
+                allPages.hide();
+
+                $("#tm-section-1").fadeIn();
+
+                // Set up background first page
+                var bgImg = $("#tmNavLink1").data("bgImg");
+                
+                $.backstretch("img/" + bgImg, {fade: 500});
+
+                // Setup Carousel, Nav, and Nav Toggle
+                setupCarousel();
+                setupNav();
+                setupNavToggle();
+                setupFooter();
+
+                // Resize Carousel upon window resize
+                $(window).resize(function() {
+                    setupCarousel();
+                    setupFooter();
+                });
+            }           
+        });
+
+        </script>
+    </body>
+
+<style>
+/* Form */
+form#insert-form {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Left column */
+form#insert-form .left-column {
+  flex: 1;
+  padding-right: 20px;
+}
+
+/* Right column */
+form#insert-form .right-column {
+  flex: 1;
+  padding-left: 20px;
+}
+
+/* Labels */
+form#insert-form label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+form#insert-form input[type="text"],
+form#insert-form input[type="number"],
+form#insert-form input[type="date"],
+form#insert-form input[type="file"],
+form#insert-form select {
+  width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit Button */
+form#insert-form button[type="submit"] {
+  width: auto;
+  padding: 6px 20px;
+  margin-top: 35px;
+  margin-left: 35px;
+  background-color: #009688;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form#insert-form button[type="submit"]:hover {
+  background-color: #00796b;
+}
+
+
+/* Form */
+form#update-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Labels */
+form#update-form label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+form#update-form input[type="text"],
+form#update-form input[type="number"],
+form#update-form select {
+  width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit Button */
+form#update-form button[type="submit"] {
+  width: auto;
+  padding: 6px 20px;
+  background-color: #009688;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form#update-form button[type="submit"]:hover {
+  background-color: #00796b;
+}
+/* Section container */
+#tm-section-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Table container */
+#records-table {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Table header */
+#records-table thead th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* Table body */
+#records-table tbody tr {
+  border: 1px solid #ddd;
+}
+
+/* Table body data */
+#records-table tbody td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+#records-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Buttons and dropdowns */
+#fetch-records-btn,
+#attribute-select,
+#operator-select,
+#value-input,
+#attendance-select {
+  margin: 0 10px 10px 0;
+  padding: 6px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button styles */
+#fetch-records-btn {
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Button hover effect */
+#fetch-records-btn:hover {
+  background-color: #00796b;
+}
+
+form#delete-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Labels */
+form#update-form label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Inputs */
+form#delete-form input[type="text"],
+form#delete-form input[type="number"],
+form#delete-form select {
+  width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit Button */
+form#delete-form button[type="submit"] {
+  width: auto;
+  padding: 6px 20px;
+  background-color: #009688;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form#delete-form button[type="submit"]:hover {
+  background-color: #00796b;
+}
+</style>
+
+</html>
