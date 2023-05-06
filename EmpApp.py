@@ -77,8 +77,8 @@ def AddEmp():
     finally:
         cursor.close()
 
-print("all modification done...")
-return render_template('AddEmpOutput.html', name=employee_name)
+    print("all modification done...")
+    return render_template('AddEmpOutput.html', name=employee_name)
 
 #get employee
 @app.route("/getemp", methods=['GET', 'POST'])
