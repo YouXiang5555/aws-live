@@ -216,34 +216,41 @@ http://www.tooplate.com/view/2102-constructive
 			<br>
 			<button type="submit">query Employee</button>
 		   </form>
-		</section>
+		   </section>
 
                     <!-- section 3 -->
                     <section id="tm-section-3" class="tm-section">
                         <!-- Update Employee page content -->
                     <h2>Update Employee</h2>
                     <p class="mb-5 tm-font-big">Aenean fermentum vestibulum ipsum, ut pretium erat sodales sodales. Pellentesque quis orci vitae dui commodo sodales et ut quam. Etiam vitae egestas purus, ut malesuada enim.</p>
-		   <form id="update-form" action="/updateemp" method="POST">
-			<label for="update_employee_id">Employee ID:</label>
-			<input type="text" id="update-employee-id" name="update_employee_id" required>
-			<br>
-			<label for="update_employee_name">Employee Name:</label>
-			<input type="text" id="update_employee_name" name="update_employee_name">
-			<br>
-			<label for="update_payroll">Payroll:</label>
-			<input type="number" id="update_payroll" name="update_payroll">
-			<br>
-			<label for="update_attendance">Attendance:</label>
-			<select id="update_attendance" name="update_attendance">
-				<option value="absent">Absent</option>
-				<option value="present">Present</option>
-			</select>
-			<br>
-			<label for="update_contact">Contact:</label>
-			<input type="text" id="update_contact" name="update-contact">
+		     <form id="update-form" action="/updateemp" method="POST">
+			<div class="left-column">
+			  <label for="update_employee_id">Employee ID:</label>
+			  <input type="text" id="update-employee-id" name="update_employee_id" required>
+			  <br>
+			  <label for="update_employee_name">Employee Name:</label>
+			  <input type="text" id="update_employee_name" name="update_employee_name">
+			  <br>
+			  <label for="update_contact">Contact:</label>
+			  <input type="number" id="update_contact" name="update_contact">
+			  <br>
+			  <label for="update-email">Email:</label>
+			  <input type="text" name="update-email" id="update-email" required>
+                        </div>
+                        <div class="right-column">
+			  <label for="update-position">Position:</label>
+			  <input type="text" id="update-position" name="update-position" required>
+			  <br>
+			  <label for="update-payscale">Payscale:</label>
+			  <input type="number" name="update-payscale" id="update-payscale">
+			  <br>
+			  <label for="update-hiredDate">Hired Date</label>
+			  <input type="date" id="update-hiredDate" name="update-hiredDate" required>
+			  <br>
+			</div>
 			<br>
 			<button type="submit">Update Employee</button>
-		    </form>
+		     </form>
                     </section>                          
                     <!-- section 4 -->
                     <section id="tm-section-4" class="tm-section">
