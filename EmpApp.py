@@ -163,7 +163,7 @@ def UpdateEmp():
 
         # Update employee record in the database
         update_sql = """UPDATE employee SET employee_name = %s, contact = %s,
-                        email = %s, position = %s,payscale = %s,hiredDate = %s WHERE emp_id = %s"""
+                        email = %s, position = %s,payscale = %s,hiredDate = %s WHERE employee_id = %s"""
         cursor = db_conn.cursor()
         cursor.execute(update_sql, (employee_name, contact, email, position, payscale,hiredDate,emp_id))
         db_conn.commit()
