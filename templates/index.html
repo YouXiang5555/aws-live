@@ -207,78 +207,54 @@ http://www.tooplate.com/view/2102-constructive
                       
 
                     <!-- section 2 -->
-                    <section id="tm-section-2" class="tm-section tm-section-carousel">
-                        <h1>Employee Management System</h1>
-                        <button id="fetch-records-btn">Get Records</button>
-                        <select id="attribute-select" style="display:none;">
-                            <option value="">Select an attribute</option>
-                            <option value="payroll">Payroll</option>
-                            <option value="attendance">Attendance</option>
-                        </select>
-                        <select id="operator-select" style="display:none;">
-                            <option value="">Select an operator</option>
-                            <option value="more_than">More than</option>
-                            <option value="less_than">Less than</option>
-                            <option value="equal_to">Equal to</option>
-                        </select>
-                        <input type="number" id="value-input" style="display:none;">
-                        <select id="attendance-select" style="display:none;">
-                            <option value="">Select attendance</option>
-                            <option value="absent">Absent</option>
-                            <option value="attend">Attend</option>
-                        </select>
-                        <!-- Container to display fetched records -->
-                        <table id="records-table" border="1">
-                            <thead>
-                                <tr>
-                                    <th>Employee ID</th>
-                                    <th>Employee Name</th>
-                                    <th>Payroll</th>
-                                    <th>Attendance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>                   
-                    </section>  
+                    <section id="tm-section-2" class="tm-section">
+		    <!-- Query page content -->
+		    <h2>Query Employee</h2>
+		    <form id="query-form" action="/getemp" method="POST">
+			<label for="query-employee-id">Employee ID:</label>
+			<input type="text" id="query-employee-id" name="query-employee-id" required>
+			<br>
+			<button type="submit">query Employee</button>
+		   </form>
+		</section>
 
                     <!-- section 3 -->
                     <section id="tm-section-3" class="tm-section">
                         <!-- Update Employee page content -->
                     <h2>Update Employee</h2>
                     <p class="mb-5 tm-font-big">Aenean fermentum vestibulum ipsum, ut pretium erat sodales sodales. Pellentesque quis orci vitae dui commodo sodales et ut quam. Etiam vitae egestas purus, ut malesuada enim.</p>
-                        <form id="update-form">
-                            <label for="update-employee-id">Employee ID:</label>
-                            <input type="text" id="update-employee-id" name="update-employee-id" required>
-                            <br>
-                            <label for="update-employee-name">Employee Name:</label>
-                            <input type="text" id="update-employee-name" name="update-employee-name">
-                            <br>
-                            <label for="update-payroll">Payroll:</label>
-                            <input type="number" id="update-payroll" name="update-payroll">
-                            <br>
-                            <label for="update-attendance">Attendance:</label>
-                            <select id="update-attendance" name="update-attendance">
-                                <option value="absent">Absent</option>
-                                <option value="present">Present</option>
-                            </select>
-                            <br>
-                            <label for="update-contact">Contact:</label>
-                            <input type="text" id="update-contact" name="update-contact">
-                            <br>
-                            <button type="submit">Update Employee</button>
-                        </form>
+		   <form id="update-form" action="/updateemp" method="POST">
+			<label for="update_employee_id">Employee ID:</label>
+			<input type="text" id="update-employee-id" name="update_employee_id" required>
+			<br>
+			<label for="update_employee_name">Employee Name:</label>
+			<input type="text" id="update_employee_name" name="update_employee_name">
+			<br>
+			<label for="update_payroll">Payroll:</label>
+			<input type="number" id="update_payroll" name="update_payroll">
+			<br>
+			<label for="update_attendance">Attendance:</label>
+			<select id="update_attendance" name="update_attendance">
+				<option value="absent">Absent</option>
+				<option value="present">Present</option>
+			</select>
+			<br>
+			<label for="update_contact">Contact:</label>
+			<input type="text" id="update_contact" name="update-contact">
+			<br>
+			<button type="submit">Update Employee</button>
+		    </form>
                     </section>                          
                     <!-- section 4 -->
                     <section id="tm-section-4" class="tm-section">
                         <!-- Delete Employee page content -->
                         <h2>Delete Employee</h2>
-                        <form id="delete-form">
-                            <label for="delete-employee-id">Employee ID:</label>
-                            <input type="text" id="delete-employee-id" name="delete-employee-id" required>
-                            <br>
-                            <button type="submit">Delete Employee</button>
-                        </form>
+		        <form id="delete-form" action="/deleteemp" method="POST">
+				<label for="delete_employee_id">Employee ID:</label>
+				<input type="text" id="delete_employee_id" name="delete_employee_id" required>
+				<br>
+				<button type="submit">Delete Employee</button>
+	                </form>
                     </section>                 
                 </div>  <!-- .tm-content -->                            
                 <footer class="footer-link">
