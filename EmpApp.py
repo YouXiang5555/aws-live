@@ -190,6 +190,27 @@ def UpdateEmp():
 
     return render_template('UpdateEmpInput.html')
 
+##attendance
+@app.route("/attendance", methods=['POST'])
+def record_attendance():
+    employee_id = request.form['employee_id']
+    date = request.form['date']
+    check_in_time = request.form['check_in_time']
+    check_out_time = request.form['check_out_time']
+
+    # Insert the attendance record into the attendance table
+    insert_sql = "INSERT INTO attendance (employeeID, date, check_in_time, check_out_time) VALUES (%s, %s, %s, %s)"
+    cursor = db_conn.cursor()
+
+    try:
+        cursor.execute(insert_sql, (employee_id, date, check_in_time, check_out_time))
+        db_conn.commit()
+    finally:
+        cursor.close()
+
+    print("attendance record added...")
+    return render_template('AttendanceOutput.html', employee_id=employee_id, date=date)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
 
