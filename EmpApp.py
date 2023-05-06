@@ -50,8 +50,7 @@ def AddEmp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, employee_name, contact, email, position, payscale, hiredDate))
-        db_conn.commit()
+        
         emp_name = employee_name
         # Uplaod image file in S3 #
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
@@ -72,6 +71,8 @@ def AddEmp():
                 s3_location,
                 custombucket,
                 emp_image_file_name_in_s3)
+            cursor.execute(insert_sql, (emp_id, employee_name, contact, email, position, payscale, hiredDate, object_url))
+            db_conn.commit()
 
         except Exception as e:
             return str(e)
