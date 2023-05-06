@@ -44,8 +44,8 @@ def AddEmp():
     emp_image_file = request.files['image']
 
    # Uplaod image file in S3 #
-        emp_image_file_name_in_s3 = "emp_id_" + str(emp_id) + "_image_file"
-        s3 = boto3.resource('s3')
+   emp_image_file_name_in_s3 = "emp_id_" + str(emp_id) + "_image_file"
+   s3 = boto3.resource('s3')
 
    if emp_image_file.filename == "":
         return "Please select a file"
@@ -68,8 +68,8 @@ def AddEmp():
         except Exception as e:
             return str(e)
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-    cursor = db_conn.cursor()
+insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+cursor = db_conn.cursor()
 
     try:
 
